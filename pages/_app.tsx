@@ -1,12 +1,22 @@
 import type { AppProps } from "next/app";
 import { Provider } from "jotai";
 import { ModalManager } from "../components";
+import { createGlobalStyle } from "styled-components";
+
+const Global = createGlobalStyle`
+  body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+`;
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   return (
     <Provider>
-      <Component {...pageProps} />
+      <Global />
       <ModalManager />
+      <Component {...pageProps} />
     </Provider>
   );
 }
