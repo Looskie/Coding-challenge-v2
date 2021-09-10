@@ -12,7 +12,8 @@ const Wrapper = styled.div`
   width: 100vw;
   height: 100vh;
   z-index: 1000;
-  background: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(1.5px);
+  background: rgba(0, 0, 0, 0.1);
 `;
 
 const Container = styled.div`
@@ -20,13 +21,16 @@ const Container = styled.div`
   max-width: 500px;
   min-height: 300px;
   max-height: 80%;
-  border-radius: 8px;
-  padding: 14px;
+  border-radius: 15px;
+  padding: 35px;
   overflow: scroll;
-  box-shadow: rgba(0, 0, 0, 0.5) 0px 16px 70px;
+  background: white;
+  box-shadow: rgb(0 0 0 / 30%) 0px 0px 9px;
 `;
 
-const Title = styled.h1``;
+const Title = styled.h1`
+  margin: 0;
+`;
 
 export const ModalManager = (): JSX.Element => {
   const [currentModal, setCurrentModal] = useAtom(activeModal);
