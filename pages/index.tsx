@@ -4,10 +4,10 @@ import styled from "styled-components";
 import { activeModal } from "../state/modal";
 
 const Home: NextPage = () => {
-  const [modal, setModal] = useAtom(activeModal);
+  const [currentModal, setCurrentModal] = useAtom(activeModal);
   return (
     <div>
-      <button onClick={() => setModal("addReview")}>Open modal</button>
+      <button onClick={() => setCurrentModal("addReview")}>Open modal</button>
       <h1>hello</h1>
     </div>
   );
