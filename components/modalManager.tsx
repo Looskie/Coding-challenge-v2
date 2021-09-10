@@ -3,6 +3,7 @@ import { useAtom } from "jotai";
 import styled from "styled-components";
 import { activeModal } from "../state/modal";
 import { modals } from "../state/modal/modals";
+import { RatingModal } from "./modals";
 
 const Wrapper = styled.div`
   position: absolute;
@@ -28,8 +29,13 @@ const Container = styled.div`
   box-shadow: rgb(0 0 0 / 30%) 0px 0px 9px;
 `;
 
+const TitleBar = styled.div`
+  display: flex;
+`;
+
 const Title = styled.h1`
   margin: 0;
+  flex-grow: 1;
 `;
 
 export const ModalManager = (): JSX.Element => {
@@ -41,7 +47,13 @@ export const ModalManager = (): JSX.Element => {
       {modal && (
         <Wrapper>
           <Container>
-            <Title>{modal.title}</Title>
+            <TitleBar>
+              <Title>{modal.title}</Title>
+              <p onClick={() => setCurrentModal(null)}>Close</p>
+            </TitleBar>
+
+            {/* Modals */}
+            {currentModal === "addReview" && <RatingModal />}
           </Container>
         </Wrapper>
       )}
