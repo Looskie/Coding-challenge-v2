@@ -22,11 +22,11 @@ const Wrapper = styled.div`
 
 const Container = styled.div`
   width: 80%;
-  max-width: 500px;
-  min-height: 300px;
+  max-width: 450px;
+  min-height: 250px;
   max-height: 80%;
   border-radius: 15px;
-  padding: 35px;
+  padding: 30px 35px;
   overflow: scroll;
   background: white;
   box-shadow: rgb(0 0 0 / 30%) 0px 0px 9px;

@@ -10,13 +10,19 @@ const Subtitle = styled.h1`
   font-size: 1.15em;
 `;
 
+const Input = styled.input`
+  border: none;
+  font-size: 1em;
+  color: #929292;
+`;
+
 export const RatingModal = (): JSX.Element => {
   return (
     <Container>
       <Subtitle>Rating</Subtitle>
       <Stars />
       <Subtitle>Review</Subtitle>
-      <textarea placeholder="Start typing..."></textarea>
+      <Input placeholder="Start typing..." />
       <Button text="Submit review" onClick={() => console.log("post")} />
     </Container>
   );
