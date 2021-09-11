@@ -7,6 +7,7 @@ const StarContainer = styled.span<{ filled: boolean }>`
   display: inline-flex;
   cursor: pointer;
   color: ${({ filled }) => (filled ? "#FFCD69" : "#E0E0E0")};
+  transition: all 0.1s ease-in-out;
 `;
 
 export const Stars = ({
