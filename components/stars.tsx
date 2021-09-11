@@ -31,7 +31,6 @@ export const Stars = ({
             onClick={() => {
               const newValue = i + 1;
 
-              setHoverValue(null);
               setStarValue(newValue);
             }}
             filled={(hoverValue || starValue) > i}
