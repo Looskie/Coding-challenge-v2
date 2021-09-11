@@ -5,6 +5,9 @@ import { activeModal } from "../state/modal";
 import { modals } from "../state/modal/modals";
 import { RatingModal } from "./modals";
 
+/* We're using React-icons because it has a better API by far, + it has types */
+import { FaTimes } from "react-icons/fa";
+
 const Wrapper = styled.div`
   position: absolute;
   display: flex;
@@ -31,6 +34,7 @@ const Container = styled.div`
 
 const TitleBar = styled.div`
   display: flex;
+  align-items: center;
 `;
 
 const Title = styled.h1`
@@ -49,7 +53,11 @@ export const ModalManager = (): JSX.Element => {
           <Container>
             <TitleBar>
               <Title>{modal.title}</Title>
-              <p onClick={() => setCurrentModal(null)}>Close</p>
+              <FaTimes
+                size={20}
+                style={{ cursor: "pointer" }}
+                onClick={() => setCurrentModal(null)}
+              />
             </TitleBar>
 
             {/* Modals */}
