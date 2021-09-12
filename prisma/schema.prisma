@@ -9,9 +9,9 @@ datasource db {
 }
 
 model Review {
-  id      Int    @id @unique
+  id      String @id @unique @default(uuid())
   rating  Int    @default(0) @db.SmallInt
-  Message String
+  message String
 
   @@map(name: "reviews")
 }
