@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { FaStar } from "react-icons/fa";
-import styled from "styled-components";
+import styled, { CSSProperties } from "styled-components";
 
 const StarsWrapper = styled.div``;
 const StarContainer = styled.span<{ filled: boolean }>`
@@ -11,21 +11,23 @@ const StarContainer = styled.span<{ filled: boolean }>`
 `;
 
 export const Stars = ({
-  rating = 4,
+  rating = 0,
   amount = 5,
   starSize = 25,
   changeable = true,
+  style,
 }: {
   rating?: number;
   amount?: number;
   starSize?: number;
   changeable?: boolean;
+  style?: CSSProperties;
 }): JSX.Element => {
   const [starValue, setStarValue] = useState(rating);
   const [hoverValue, setHoverValue] = useState<number | null>(null);
 
   return (
-    <StarsWrapper>
+    <StarsWrapper style={{ ...style }}>
       {[...Array(amount)].map((_, i) => {
         return (
           <StarContainer
