@@ -20,7 +20,7 @@ const Wrapper = styled(motion.div)`
   z-index: 1000;
 `;
 
-const Container = styled.div`
+const Container = styled(motion.div)`
   width: 80%;
   max-width: 450px;
   min-height: 250px;
@@ -62,6 +62,21 @@ const wrapperAnimation = {
   },
 };
 
+const containerAnimation = {
+  initial: {
+    opacity: 0,
+    transform: "scale(.94)",
+  },
+  isOpen: {
+    opacity: 1,
+    transform: "scale(1)",
+  },
+  exit: {
+    opacity: 0,
+    transform: "scale(.94)",
+  },
+};
+
 export const ModalManager = (): JSX.Element => {
   const [currentModal, setCurrentModal] = useAtom(activeModal);
   const modal = currentModal && modals[currentModal];
@@ -79,7 +94,7 @@ export const ModalManager = (): JSX.Element => {
           transition={{ duration: 0.18 }}
           variants={wrapperAnimation}
         >
-          <Container ref={containerRef}>
+          <Container variants={containerAnimation} ref={containerRef}>
             <TitleBar>
               <Title>{modal.title}</Title>
               <FaTimes
