@@ -12,6 +12,7 @@ const Subtitle = styled.h1`
 
 const Input = styled.input`
   border: none;
+  width: 80%;
   font-size: 1em;
   color: #929292;
 `;
