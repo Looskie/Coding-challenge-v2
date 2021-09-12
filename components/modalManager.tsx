@@ -12,6 +12,7 @@ import { useRef } from "react";
 
 const Wrapper = styled(motion.div)`
   position: absolute;
+  top: 0;
   display: flex;
   align-items: center;
   justify-content: center;
