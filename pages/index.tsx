@@ -38,13 +38,19 @@ const Seperator = styled.span`
 
 const ReviewOverview = styled.div`
   display: flex;
+  align-items: center;
 `;
 
 const ReviewFeedback = styled.p`
+  font-size: 1.1em;
   font-weight: 400;
+  color: #797874;
 `;
+
 const ReviewRating = styled.span`
+  font-size: 1.1em;
   font-weight: 700;
+  color: black;
 `;
 
 const Home: NextPage = () => {
@@ -70,24 +76,21 @@ const Home: NextPage = () => {
       <Seperator />
       <SecondaryTitle>Reviews</SecondaryTitle>
       <ReviewOverview>
-        <Stars rating={4} changeable={false} />
+        <Stars style={{ marginRight: 25 }} rating={4} changeable={false} />
         <ReviewFeedback>
-          <ReviewRating>4</ReviewRating>
-          it was alright
+          <ReviewRating>4</ReviewRating>, book was full of fluff
         </ReviewFeedback>
       </ReviewOverview>
       <ReviewOverview>
-        <Stars rating={4} changeable={false} />
+        <Stars style={{ marginRight: 25 }} rating={3} changeable={false} />
         <ReviewFeedback>
-          <ReviewRating>4</ReviewRating>
-          it was alright
+          <ReviewRating>4</ReviewRating>, book was fluff
         </ReviewFeedback>
       </ReviewOverview>
       <ReviewOverview>
-        <Stars rating={4} changeable={false} />
+        <Stars style={{ marginRight: 25 }} rating={4} changeable={false} />
         <ReviewFeedback>
-          <ReviewRating>4</ReviewRating>
-          it was alright
+          <ReviewRating>4</ReviewRating>, book was amazing
         </ReviewFeedback>
       </ReviewOverview>
     </Container>
