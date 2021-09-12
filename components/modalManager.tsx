@@ -95,7 +95,11 @@ export const ModalManager = (): JSX.Element => {
           transition={{ duration: 0.18 }}
           variants={wrapperAnimation}
         >
-          <Container variants={containerAnimation} ref={containerRef}>
+          <Container
+            transition={{ duration: 0.18 }}
+            variants={containerAnimation}
+            ref={containerRef}
+          >
             <TitleBar>
               <Title>{modal.title}</Title>
               <FaTimes
