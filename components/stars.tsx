@@ -14,10 +14,12 @@ export const Stars = ({
   rating = 4,
   amount = 5,
   starSize = 25,
+  changeable = true,
 }: {
   rating?: number;
   amount?: number;
   starSize?: number;
+  changeable?: boolean;
 }): JSX.Element => {
   const [starValue, setStarValue] = useState(rating);
   const [hoverValue, setHoverValue] = useState<number | null>(null);
@@ -27,11 +29,12 @@ export const Stars = ({
       {[...Array(amount)].map((_, i) => {
         return (
           <StarContainer
-            onMouseEnter={() => setHoverValue(i + 1)}
-            onMouseLeave={() => setHoverValue(null)}
+            onMouseEnter={() => changeable && setHoverValue(i + 1)}
+            onMouseLeave={() => changeable && setHoverValue(null)}
             onClick={() => {
-              const newValue = i + 1;
+              if (!changeable) return;
 
+              const newValue = i + 1;
               setStarValue(newValue);
             }}
             filled={(hoverValue || starValue) > i}
