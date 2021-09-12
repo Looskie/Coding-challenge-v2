@@ -1,9 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-
-type Data = {
-  success: boolean;
-  message: string;
-};
+import { Data } from "../../types";
 
 export default function handler(
   req: NextApiRequest,

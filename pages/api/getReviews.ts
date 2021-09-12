@@ -1,12 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { PrismaClient } from "@prisma/client";
-
-type Data = {
-  success: boolean;
-  message: string;
-  data?: any;
-};
-const prisma = new PrismaClient();
+import { prisma } from "../../utils";
+import { Data } from "../../types";
 
 export default async function handler(
   req: NextApiRequest,
