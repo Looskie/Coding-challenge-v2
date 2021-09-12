@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { CSSProperties } from "styled-components";
 
 const Btn = styled.button`
   display: block;
@@ -15,10 +15,16 @@ const Btn = styled.button`
 
 export const Button = ({
   text,
+  style,
   onClick,
 }: {
   text: string;
+  style?: CSSProperties;
   onClick: () => unknown;
 }): JSX.Element => {
-  return <Btn onClick={onClick}>{text}</Btn>;
+  return (
+    <Btn style={{ ...style }} onClick={onClick}>
+      {text}
+    </Btn>
+  );
 };
