@@ -1,16 +1,13 @@
 import useSWR from "swr";
-import { Reviews, useReviewsResponse } from "../types";
+import { useReviewsResponse } from "../types";
+import { fetcher } from "../utils";
 
-export const useReviews = ({
-  take = 3,
-}: {
-  take?: number;
-}): useReviewsResponse => {
-  const { data, error } = useSWR(`/api/getReviews?take=${take}`);
-  const reviews: Reviews = data.data;
+export const useReviews = (take?: number): useReviewsResponse => {
+  const { data, error } = useSWR(`/api/getReviews?take=${take || 3}`, fetcher);
+  const reviews = data?.data;
 
   return {
-    reviews,
+    reviews: reviews,
     isLoading: !error && !data,
     isError: error,
   };

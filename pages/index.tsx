@@ -3,7 +3,9 @@ import type { NextPage } from "next";
 import styled from "styled-components";
 import { Button } from "../components";
 import { Stars } from "../components/stars";
+import { useReviews } from "../hooks/useReviews";
 import { activeModal } from "../state/modal";
+import { Review as ReviewType } from "../types";
 
 const Container = styled.div`
   display: block;
@@ -55,44 +57,54 @@ const ReviewRating = styled.span`
 
 const Home: NextPage = () => {
   const [, setCurrentModal] = useAtom(activeModal);
+  const { reviews, isLoading, isError } = useReviews();
 
+  const average =
+    reviews?.reduce((total, next) => total + next.rating, 0) / reviews?.length;
+
+  console.log(Math.round(average));
   return (
     <Container>
       <Title>The Minimalist Entrepreneur</Title>
       <Review>
-        <AverageReview>4.3</AverageReview>
-        <Stars
-          rating={4}
-          changeable={false}
-          starSize={30}
-          style={{ flexGrow: 1 }}
-        />
-        <Button
-          text="Add review"
-          style={{ margin: 0 }}
-          onClick={() => setCurrentModal("addReview")}
-        />
+        {isLoading && "Loading"}
+        {reviews && (
+          <>
+            <AverageReview>{average.toFixed(1)}</AverageReview>
+            <Stars
+              rating={Math.round(average)}
+              changeable={false}
+              starSize={30}
+              style={{ flexGrow: 1 }}
+            />
+            <Button
+              text="Add review"
+              style={{ margin: 0 }}
+              onClick={() => setCurrentModal("addReview")}
+            />
+          </>
+        )}
       </Review>
       <Seperator />
       <SecondaryTitle>Reviews</SecondaryTitle>
-      <ReviewOverview>
-        <Stars style={{ marginRight: 25 }} rating={4} changeable={false} />
-        <ReviewFeedback>
-          <ReviewRating>4</ReviewRating>, book was full of fluff
-        </ReviewFeedback>
-      </ReviewOverview>
-      <ReviewOverview>
-        <Stars style={{ marginRight: 25 }} rating={3} changeable={false} />
-        <ReviewFeedback>
-          <ReviewRating>4</ReviewRating>, book was fluff
-        </ReviewFeedback>
-      </ReviewOverview>
-      <ReviewOverview>
-        <Stars style={{ marginRight: 25 }} rating={4} changeable={false} />
-        <ReviewFeedback>
-          <ReviewRating>4</ReviewRating>, book was amazing
-        </ReviewFeedback>
-      </ReviewOverview>
+      {isLoading && !isError && "Loading"}
+      {isError && "An error occurred whilst fetching reviews!"}
+
+      {reviews &&
+        reviews.map((review, i: number) => {
+          return (
+            <ReviewOverview key={i}>
+              <Stars
+                style={{ marginRight: 25 }}
+                rating={review.rating}
+                changeable={false}
+              />
+              <ReviewFeedback>
+                <ReviewRating>{review.rating}</ReviewRating>, {review.message}
+              </ReviewFeedback>
+            </ReviewOverview>
+          );
+        })}
     </Container>
   );
 };

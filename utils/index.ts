@@ -1,1 +1,2 @@
-export * from "./prisma";
+export * from "./fetcher";
+export * from "./makeRequest";

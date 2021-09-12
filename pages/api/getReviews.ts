@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { prisma } from "../../utils";
+import { prisma } from "../../utils/prisma";
 import { Data } from "../../types";
 
 export default async function handler(
@@ -26,9 +26,7 @@ export default async function handler(
     res.json({
       success: true,
       message: "Successfully gathered reviews!",
-      data: {
-        ...filterReviews,
-      },
+      data: [...filterReviews],
     });
   } catch (error) {
     console.log(error);

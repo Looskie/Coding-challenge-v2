@@ -1,12 +1,14 @@
 export interface Reviews {
-  [key: string]: {
-    message: string;
-    rating: number;
-  };
+  [key: string]: Review;
+}
+
+export interface Review {
+  message: string;
+  rating: number;
 }
 
 export interface useReviewsResponse extends useSWR {
-  reviews: Reviews;
+  reviews: Array<Review>;
 }
 
 export interface useSWR {
