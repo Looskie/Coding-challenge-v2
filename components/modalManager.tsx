@@ -1,4 +1,4 @@
-import { AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { useAtom } from "jotai";
 import styled from "styled-components";
 import { activeModal } from "../state/modal";
@@ -7,8 +7,10 @@ import { RatingModal } from "./modals";
 
 /* We're using React-icons because it has a better API by far, + it has types */
 import { FaTimes } from "react-icons/fa";
+import { useModalHook } from "../hooks/modalHook";
+import { useRef } from "react";
 
-const Wrapper = styled.div`
+const Wrapper = styled(motion.div)`
   position: absolute;
   display: flex;
   align-items: center;
@@ -16,8 +18,6 @@ const Wrapper = styled.div`
   width: 100vw;
   height: 100vh;
   z-index: 1000;
-  backdrop-filter: blur(1.5px);
-  background: rgba(0, 0, 0, 0.1);
 `;
 
 const Container = styled.div`
@@ -42,15 +42,44 @@ const Title = styled.h1`
   flex-grow: 1;
 `;
 
+/* Animations */
+
+const wrapperAnimation = {
+  initial: {
+    "opacity": 0,
+    "background": "rgba(0, 0, 0, 0)",
+    "backdrop-filter": "blur(0)",
+  },
+  isOpen: {
+    "opacity": 1,
+    "background": "rgba(0, 0, 0, 0.1)",
+    "backdrop-filter": "blur(1.2px)",
+  },
+  exit: {
+    "opacity": 0,
+    "background": "rgba(0, 0, 0, 0)",
+    "backdrop-filter": "blur(0)",
+  },
+};
+
 export const ModalManager = (): JSX.Element => {
   const [currentModal, setCurrentModal] = useAtom(activeModal);
   const modal = currentModal && modals[currentModal];
+  const containerRef = useRef<HTMLDivElement | null>(null);
+
+  useModalHook(containerRef, () => setCurrentModal(null));
 
   return (
     <AnimatePresence>
       {modal && (
-        <Wrapper>
-          <Container>
+        <Wrapper
+          initial={"initial"}
+          exit={"exit"}
+          animate={"isOpen"}
+          transition={{ duration: 0.18 }}
+          variants={wrapperAnimation}
+        >
+          <Container ref={containerRef}>
             <TitleBar>
               <Title>{modal.title}</Title>
               <FaTimes
