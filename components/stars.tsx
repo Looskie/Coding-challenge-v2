@@ -3,9 +3,9 @@ import { FaStar } from "react-icons/fa";
 import styled, { CSSProperties } from "styled-components";
 
 const StarsWrapper = styled.div``;
-const StarContainer = styled.span<{ filled: boolean }>`
+const StarContainer = styled.span<{ filled: boolean; changeable: boolean }>`
   display: inline-flex;
-  cursor: pointer;
+  cursor: ${({ changeable }) => (changeable ? "pointer" : "unset")};
   color: ${({ filled }) => (filled ? "#FFCD69" : "#E0E0E0")};
   transition: all 0.1s ease-in-out;
 `;
@@ -41,6 +41,7 @@ export const Stars = ({
             }}
             filled={(hoverValue || starValue) > i}
             key={i}
+            changeable={changeable}
           >
             <FaStar size={starSize} />
           </StarContainer>
