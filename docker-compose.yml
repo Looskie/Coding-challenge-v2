@@ -1,0 +1,11 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres
+    environment:
+      POSTGRES_USER: ratings
+      POSTGRES_PASSWORD: ratings
+      POSTGRES_DB: ratings
+    ports:
+      - "5432:5432"
