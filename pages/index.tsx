@@ -62,7 +62,6 @@ const Home: NextPage = () => {
   const average =
     reviews?.reduce((total, next) => total + next.rating, 0) / reviews?.length;
 
-  console.log(Math.round(average));
   return (
     <Container>
       <Title>The Minimalist Entrepreneur</Title>
