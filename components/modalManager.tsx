@@ -47,19 +47,19 @@ const Title = styled.h1`
 
 const wrapperAnimation = {
   initial: {
-    "opacity": 0,
-    "background": "rgba(0, 0, 0, 0)",
-    "backdrop-filter": "blur(0)",
+    opacity: 0,
+    background: "rgba(0, 0, 0, 0)",
+    backdropFilter: "blur(0)",
   },
   isOpen: {
-    "opacity": 1,
-    "background": "rgba(0, 0, 0, 0.1)",
-    "backdrop-filter": "blur(1.2px)",
+    opacity: 1,
+    background: "rgba(0, 0, 0, 0.1)",
+    backdropFilter: "blur(1.2px)",
   },
   exit: {
-    "opacity": 0,
-    "background": "rgba(0, 0, 0, 0)",
-    "backdrop-filter": "blur(0)",
+    opacity: 0,
+    background: "rgba(0, 0, 0, 0)",
+    backdropFilter: "blur(0)",
   },
 };
 
