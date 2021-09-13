@@ -21,6 +21,8 @@ export default async function handler(
     });
 
     /* Remove id from request */
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore it thinks id is type "any" whenever i build in vercel, but when im in my IDE its fine,
     const filterReviews = reviews.map(({ id, ...reviews }) => reviews);
 
     res.json({
