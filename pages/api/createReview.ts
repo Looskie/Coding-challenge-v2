@@ -15,6 +15,12 @@ export default async function handler(
         message: "You have a type error",
       });
 
+    if (message.length >= 60)
+      return res.status(400).json({
+        success: false,
+        message: "Your message is too long!",
+      });
+
     const review = await prisma.review.create({
       data: {
         message,

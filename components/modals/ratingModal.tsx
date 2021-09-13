@@ -63,11 +63,13 @@ export const RatingModal = (): JSX.Element => {
       <Input
         onChange={(e) => setInput(e.target.value)}
         placeholder="Start typing..."
+        autoFocus
       />
       <Button
         text="Submit review"
         onClick={async () => {
           if (input.length <= 0) return setError("You must set a review!");
+          if (input.length >= 60) return setError("Your review is too long!");
 
           const { data, error } = await makeRequest(
             "/api/createReview",
