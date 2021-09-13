@@ -15,26 +15,20 @@ export default async function handler(
         message: "You have a type error",
       });
 
-    const review = (await prisma.review.create({
+    const review = await prisma.review.create({
       data: {
         message,
         rating,
       },
-    })) as {
-      id?: string;
-      message: string;
-      rating: number;
-    };
-    /* We're explicitly setting a type here because typescript requires id to be
-    optional since we're doing a delete below */
+    });
 
-    delete review["id"];
+    const { id, ...rest } = review;
 
     res.json({
       success: true,
       message: "Successfully created your review!",
       data: {
-        ...review,
+        rest,
       },
     });
   } catch (error) {
