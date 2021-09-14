@@ -23,7 +23,6 @@ export const Stars = ({
   changeable?: boolean;
   style?: CSSProperties;
 }): JSX.Element => {
-  const [starValue, setStarValue] = useState(rating);
   const [hoverValue, setHoverValue] = useState<number | null>(null);
 
   return (
@@ -37,9 +36,9 @@ export const Stars = ({
               if (!changeable) return;
 
               const newValue = i + 1;
-              setStarValue(newValue);
+              rating = newValue;
             }}
-            filled={(hoverValue || starValue) > i}
+            filled={(hoverValue || rating) > i}
             key={i}
             changeable={changeable}
           >
