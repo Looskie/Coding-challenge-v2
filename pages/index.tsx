@@ -69,7 +69,9 @@ const Home: NextPage = () => {
         {isLoading && "Loading"}
         {reviews && (
           <>
-            <AverageReview>{average.toFixed(1)}</AverageReview>
+            <AverageReview>
+              {average.toFixed() !== "NaN" ? average.toFixed(1) : 0}
+            </AverageReview>
             <Stars
               rating={Math.round(average)}
               changeable={false}
@@ -89,22 +91,24 @@ const Home: NextPage = () => {
       {isLoading && !isError && "Loading"}
       {isError && "An error occurred whilst fetching reviews!"}
 
-      {reviews
-        ? reviews.map((review, i: number) => {
-            return (
-              <ReviewOverview key={i}>
-                <Stars
-                  style={{ marginRight: 25 }}
-                  rating={review.rating}
-                  changeable={false}
-                />
-                <ReviewFeedback>
-                  <ReviewRating>{review.rating}</ReviewRating>, {review.message}
-                </ReviewFeedback>
-              </ReviewOverview>
-            );
-          })
-        : "No reviews yet!"}
+      {reviews && reviews.length > 0 ? (
+        reviews.map((review, i: number) => {
+          return (
+            <ReviewOverview key={i}>
+              <Stars
+                style={{ marginRight: 25 }}
+                rating={review.rating}
+                changeable={false}
+              />
+              <ReviewFeedback>
+                <ReviewRating>{review.rating}</ReviewRating>, {review.message}
+              </ReviewFeedback>
+            </ReviewOverview>
+          );
+        })
+      ) : (
+        <>{!isError && <p>No reviews yet!</p>}</>
+      )}
     </Container>
   );
 };
