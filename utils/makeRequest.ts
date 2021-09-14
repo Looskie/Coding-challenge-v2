@@ -2,7 +2,7 @@ export const makeRequest = async (
   URL: string,
   method: "POST" | "GET" | "DELETE" | "PATCH",
   body?: any
-): Promise<{ data: unknown | null; error: string | null }> => {
+): Promise<{ data: any | null; error: string | null }> => {
   const req = await fetch(URL, {
     method,
     headers: {
