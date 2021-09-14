@@ -2,7 +2,7 @@ import { useAtom } from "jotai";
 import type { NextPage } from "next";
 import styled from "styled-components";
 import { Button } from "../components";
-import { Stars } from "../components/stars";
+import { Stars } from "../components/Stars";
 import { useReviews } from "../hooks/useReviews";
 import { activeModal } from "../state/modal";
 import { Review as ReviewType } from "../types";

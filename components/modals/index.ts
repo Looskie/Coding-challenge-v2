@@ -1,1 +1,1 @@
-export * from "./ratingModal";
+export * from "./RatingModal";

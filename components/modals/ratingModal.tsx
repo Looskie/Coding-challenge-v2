@@ -3,7 +3,7 @@ import { useState } from "react";
 import { FaStar } from "react-icons/fa";
 import styled from "styled-components";
 import { mutate } from "swr";
-import { Button } from "../";
+import { Button } from "..";
 import { activeModal } from "../../state/modal";
 import { makeRequest } from "../../utils";
 

@@ -1,2 +1,2 @@
-export * from "./button";
-export * from "./modalManager";
+export * from "./Button";
+export * from "./ModalManager";
